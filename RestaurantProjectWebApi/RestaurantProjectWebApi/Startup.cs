@@ -29,8 +29,8 @@ namespace RestaurantProjectWebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-       
 
+        
             
             services.AddDbContextPool<AppDbContext>
                 (options =>options.UseSqlServer(Configuration.GetConnectionString("RestaurantConnectionString")));
@@ -45,7 +45,7 @@ namespace RestaurantProjectWebApi
                 
 
             }).AddEntityFrameworkStores<AppDbContext>();
-          
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +59,10 @@ namespace RestaurantProjectWebApi
             {
                 app.UseHsts();
             }
+            app.UseCors(builder =>
+            builder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();

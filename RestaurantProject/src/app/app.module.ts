@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from '../sections/menu/menu.component';
-import { AboutComponent } from '../sections/about/about.component';
-import { HomeComponent } from '../sections/home/home.component';
+import { MenuComponent } from './sections/menu/menu.component';
+import { AboutComponent } from './sections/about/about.component';
+import { HomeComponent } from './sections/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { BlogComponent } from '../sections/blog/blog.component';
+import { BlogComponent } from './sections/blog/blog.component';
 import { RezervareComponent } from './UserActions/rezervare/rezervare.component';
 import { LoginComponent } from './UserActions/login/login.component';
 import { RegistrationComponent } from './UserActions/registration/registration.component';
@@ -45,8 +45,8 @@ import { DataService } from './Service/data.service';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
-
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [
     DataService

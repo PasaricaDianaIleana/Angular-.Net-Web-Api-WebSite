@@ -21,34 +21,61 @@
               </div>
             </div>
             <div class="col-md-6">
-                <form [formGroup]="registrationModel" (ngSubmit)="AddUser()" autocomplete="off">
-               <div class="form-group">
+                <form [formGroup]="registrationModel" (ngSubmit)="SubmitForm()" autocomplete="off">
+               <div class="form-group required"  >
                    <label for="UserName">UserName</label>
                    <input id="UserName" class="form-control" type="text"  formControlName="UserName">
-               </div>
+              <label class="text-danger" *ngIf="registrationModel.get('UserName').touched &&registrationModel.get('UserName').errors?.required ">
+                  This field is required
+              </label>
+                </div>
                <div class="form-group">
                 <label for="FullName">FullName</label>
                 <input id="FullName" class="form-control" type="text"  formControlName="FullName">
+                <label class="text-danger" *ngIf="registrationModel.get('FullName').touched &&registrationModel.get('FullName').errors?.required ">
+                    This field is required
+                </label>
             </div>
           
             <div class="form-group">
                 <label for="Email">Email</label>
                 <input id="Email" class="form-control" type="email"  formControlName="Email">
+                <label class="text-danger" *ngIf="registrationModel.get('Email').touched && registrationModel.get('Email').errors?.required">
+                    This field is required
+                </label>
+                <label class="text-danger" *ngIf="registrationModel.get('Email').touched && registrationModel.get('Email').errors?.email">
+                    Invalid email format
+                </label>
             </div>
              <div  formGroupName="Passwords">
             <div class="form-group">
                 <label for="Password">Password</label>
                 <input id="Password" class="form-control" type="password"  formControlName="Password">
+                <label class="text-danger" *ngIf="registrationModel.get('Passwords.Password').touched && registrationModel.get('Passwords.Password').errors?.required">
+                    This field is required
+                </label>
+                <label class="text-danger" *ngIf="registrationModel.get('Passwords.Password').touched && registrationModel.get('Passwords.Password').errors?.minLength">
+                   Password must have more than 4 characters
+                </label>
             </div>
           
             <div class="form-group">
                 <label for="ConfirmPassword">ConfirmPassword</label>
                 <input id="ConfirmPassword" class="form-control" type="password"  formControlName="ConfirmPassword">
+                <label class="text-danger" *ngIf="registrationModel.get('Passwords.ConfirmPassword').touched && registrationModel.get('Passwords.ConfirmPassword').errors?.required">
+                    This field is required
+                </label>
+                <label class="text-danger" *ngIf="registrationModel.get('Passwords.ConfirmPassword').touched && registrationModel.get('Passwords.ConfirmPassword').errors?.minLength">
+                   Password must have more than 4 characters
+                </label>
+                <label class="text-danger" *ngIf="registrationModel.get('Passwords.ConfirmPassword').touched && registrationModel.get('Passwords.ConfirmPassword').errors?.passwordsMustMatch">
+                    Password must match
+                 </label>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-8 offset-md-2">
-                <button  type="submit" class="btn btn-lg btn-block">Sign Up</button>
+                <button  type="submit" class="btn btn-lg btn-block" [disabled]="!registrationModel.valid">Sign Up</button>
             </div>
         </div>
                 </form>
