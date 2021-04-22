@@ -1,0 +1,98 @@
+.modal {
+    padding: 30px ; 
+    display: block;
+}
+.inputDate{
+    border-width:0px;
+border:none;
+outline: none;
+margin-left: 250px;
+width: 180px;
+font-size: 18px;
+color:rgb(160, 112, 23);
+
+ 
+  
+}
+.labelStyle{
+    margin-left: 310px; 
+    color:rgb(90, 63, 11);
+    font-size:16px;
+  margin-top: -35px;
+
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.rightArrow{
+    cursor: pointer;
+  margin-left:425px;
+ margin-top: 50px;
+ color:rgb(160, 112, 23);
+
+  
+}
+.leftArrow{
+    cursor: pointer;
+    color:rgb(160, 112, 23);
+    margin-left: 230px;
+    
+   
+}
+.leftArrowGuests{
+margin-left: 210px;
+color:rgb(160, 112, 23);
+}
+input[type=time]::-webkit-inner-spin-button, 
+input[type=time]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.numberForm{
+margin-left: 246px;
+margin-top: -32px;
+width: 118px;
+text-align:center ;
+}
+.rightArrowGuests{
+margin-left: 380px;
+margin-top: -36px;
+display: block;
+color:rgb(160, 112, 23);
+}
+.guestsLabel{
+    margin-top: 18px;
+    margin-left:300px;
+    display: block;
+}
+.leftArrowHour{
+margin-left: 220px;
+color:rgb(160, 112, 23);
+}
+.rightArrowHour{
+margin-left: 395px;
+margin-top: -35px;
+display: block;
+color:rgb(160, 112, 23);
+}
+
+.HourLabel{
+    margin-top: 10px;
+    margin-left: 320px;
+    display: block;
+}
+.timeInput{
+margin-left: 260px;
+margin-top: 0px;
+width: 120px;
+}
+.btn{
+    background-color: rgb(144, 119, 90);
+    width: 675px;
+    color:white;
+    margin-top:17px
+}

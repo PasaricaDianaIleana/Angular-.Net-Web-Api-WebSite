@@ -1,0 +1,25 @@
+.btnLink{
+position: absolute;
+z-index: 2;
+margin: 25px 0 30px 380px;
+border-radius:20px;
+width:20%;
+color:white;
+text-decoration: underline rgb(211, 76, 98) ;
+text-underline-offset:3px;
+
+}
+.btnLogin{
+position: absolute;
+z-index: 2;
+margin: 25px 0 30px 520px;
+border-radius:20px;
+width:20%;
+}
+.btnLink:hover{
+ 
+   
+    font-family: Arial, Helvetica, sans-serif;
+    color:white
+
+}
