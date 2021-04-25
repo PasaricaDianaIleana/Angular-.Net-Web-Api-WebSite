@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using RestaurantDataAccess;
 using RestaurantDataAccess.Models;
-using Microsoft.AspNetCore.Identity;
+using System;
+using System.Text;
 
 namespace RestaurantProjectWebApi
 {
@@ -46,6 +42,29 @@ namespace RestaurantProjectWebApi
 
             }).AddEntityFrameworkStores<AppDbContext>();
             services.AddCors();
+            var key = Encoding.UTF8.GetBytes("1234567890123456");
+            services.AddAuthentication(opt =>
+            { 
+                //set default scheme to jwt authentication
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(opt=> {
+                //enabled another types of authentication requests
+                opt.RequireHttpsMetadata = false;
+                //don't save the token in server after authentication
+                opt.SaveToken = false;
+                opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience=false,
+                    ClockSkew=TimeSpan.Zero
+
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
