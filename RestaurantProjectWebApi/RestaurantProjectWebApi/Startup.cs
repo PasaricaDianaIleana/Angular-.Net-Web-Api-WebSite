@@ -42,7 +42,7 @@ namespace RestaurantProjectWebApi
 
             }).AddEntityFrameworkStores<AppDbContext>();
             services.AddCors();
-            var key = Encoding.UTF8.GetBytes("1234567890123456");
+            var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:Token_Key"].ToString());
             services.AddAuthentication(opt =>
             { 
                 //set default scheme to jwt authentication
@@ -56,8 +56,9 @@ namespace RestaurantProjectWebApi
                 opt.SaveToken = false;
                 opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    
+                    //system will validate  security key during token validation 
                     ValidateIssuerSigningKey = true,
+
                     IssuerSigningKey = new SymmetricSecurityKey(key),
                     ValidateIssuer = false,
                     ValidateAudience=false,
