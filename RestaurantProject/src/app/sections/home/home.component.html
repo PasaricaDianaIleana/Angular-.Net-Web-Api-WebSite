@@ -1,12 +1,59 @@
-<div class="container-fluid">
-<div class="split left">
-    <app-navbar></app-navbar>
-</div>
-<div class="split right">
-  
-    <a class="btn" (click)="rezervare()" class="btnLink" >Rezervare</a>
-    <button class="btn btn-danger btnLogin" routerLink="/Login" >Login</button>
-<img src="../../assets/images/h1_hero1.jpg" class="img-fluid" style="width: 768px;height: 677px;">
 
+<div id="container">
+    <div class="item" style="height: 677px;">
+        <app-navbar></app-navbar>
+
+        <h3 class="title">Eat & Enjoy good food,
+            <br />made with love
+        </h3>
+
+        <p class="subTitle">Making a reservation at restaurant is easy and takes just
+            <br /> a couple of minutes.
+        </p>
+        <button class="btn btnMenu" (click)="redirectToMenu()">Our menu</button>
+    </div>
+    <div class="item">
+        <a class="btn" (click)="rezervare()" class="btnLink">Rezervare</a>
+        <button class="btn btn-danger btnLogin" routerLink="/Login">Login</button>
+        <img src="../../assets/images/h1_hero1.jpg" class="img-fluid" style="width: 810px;height: 677px;">
+    </div>
+
+<h1 class="h1">Best place to eat good food</h1>
+
+<div class="card-deck pt-5" style="width: 80%; margin-left: 10rem;">
+    <div class="card">
+        <img class="card-img-top cardImg" src="../../../assets/images/—Pngtree—breakfast porridge oat milk_5400226.png" >
+    <div class="card-body">
+        <h5 class="card-title">Breakfast</h5>
+        <p class="card-text" >
+            Breakfast is a light morning meal typically consisting of pastries
+             and baked goods, fruits, toast, and coffee. 
+        
+        </p>
+    </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top cardImg" src="../../../assets/images/lunch.png" >
+        <div class="card-body">
+            <h5 class="card-title mt-4">Lunch</h5>
+            <p class="card-text" >
+                Lunch meal typically consisting of starters
+                 and salad,pasta. 
+            
+            </p>
+        </div>
+    
+    </div>
+    <div class="card">
+        <img class="card-img-top cardImg " src="../../../assets/images/coffee.png" >
+
+        <div class="card-body">
+            <h5 class="card-title mt-4">Drinks</h5>
+            <p class="card-text" >
+                Enjoy a drink in our spacious lounge bar, is a truly enjoyable experience 
+            </p>
+        </div>
+     
+    </div>
 </div>
 </div>

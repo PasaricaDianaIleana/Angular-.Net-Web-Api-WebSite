@@ -17,4 +17,7 @@ export class HomeComponent implements OnInit {
 rezervare(){
 this.router.navigate(['/Rezervare']);
 }
+redirectToMenu(){
+  this.router.navigate(['/menu']);
+}
 }
