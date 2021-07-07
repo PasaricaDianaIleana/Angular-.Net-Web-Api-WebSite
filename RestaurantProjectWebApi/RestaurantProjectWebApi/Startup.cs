@@ -26,8 +26,8 @@ namespace RestaurantProjectWebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-        
-            
+          
+
             services.AddDbContextPool<AppDbContext>
                 (options =>options.UseSqlServer(Configuration.GetConnectionString("RestaurantConnectionString")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
@@ -71,6 +71,7 @@ namespace RestaurantProjectWebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -86,6 +87,7 @@ namespace RestaurantProjectWebApi
             app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
+          
         }
     }
 }

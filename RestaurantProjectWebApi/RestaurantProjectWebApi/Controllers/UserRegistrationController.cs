@@ -83,23 +83,7 @@ namespace RestaurantProjectWebApi.Controllers
             }
          
         }
-        [HttpGet]
-        [Authorize]
-        [Route("UserProfile")]
-        public async Task<Object> GetUserProfile(int id)
-        {
-          
-            string userId = User.Claims.First(c => c.Type == "UserId").Value;
-            //get details about user
-            var user = await _userManager.FindByIdAsync(userId);
-            return new
-            {
-                user.FullName,
-                user.Email,
-                user.UserName
-            };
-            return Ok();
-        }
+       
     }
    
 }

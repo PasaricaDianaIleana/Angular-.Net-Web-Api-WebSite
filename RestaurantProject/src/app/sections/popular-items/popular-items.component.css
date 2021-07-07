@@ -1,0 +1,31 @@
+.background-img{
+    margin-top: 5rem; 
+    opacity: 0.85; 
+    width: 100%;
+     height: 80%;
+
+}
+.heading{
+    position: absolute;
+  top: 11rem;
+  left: 7rem;
+  color:white;
+  font-size: 2.4rem;
+  font-weight: bolder;
+   font-family: Arial, Helvetica, sans-serif;
+}
+.btnMenu{
+    background-color: #FE5F41;
+color:white;
+border-radius: 26px;
+  top: 11rem;
+  left: 67em;
+  width: 11%;
+  height: 6%;
+position: absolute;
+font-weight: 600;
+font-size: 1.2rem;
+}
+.btnMenu:hover{
+    background-color: rgba(236, 94, 28, 0.932);
+}

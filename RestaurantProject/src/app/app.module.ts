@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './sections/menu/menu.component';
@@ -14,14 +14,15 @@ import { RegistrationComponent } from './UserActions/registration/registration.c
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectDateComponent } from './UserActions/select-date/select-date.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatDatepickerModule} from '@angular/material/datepicker'
-import {FormsModule,ReactiveFormsModule,} from '@angular/forms'
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { SelectReservationComponent } from './UserActions/select-reservation/select-reservation.component';
 import { DataService } from './Service/data.service';
+import { PopularItemsComponent } from './sections/popular-items/popular-items.component';
 @NgModule({
-   
+
   declarations: [
     AppComponent,
 
@@ -34,7 +35,8 @@ import { DataService } from './Service/data.service';
     LoginComponent,
     RegistrationComponent,
     SelectDateComponent,
-    SelectReservationComponent
+    SelectReservationComponent,
+    PopularItemsComponent
   ],
   imports: [
     BrowserModule,
