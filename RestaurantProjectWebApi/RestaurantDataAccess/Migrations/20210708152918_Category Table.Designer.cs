@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantDataAccess;
 
 namespace RestaurantDataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210708152918_Category Table")]
+    partial class CategoryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,19 +191,6 @@ namespace RestaurantDataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RestaurantDataAccess.Models.Category", b =>
-                {
-                    b.Property<int>("CategoryId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("CategoryId");
-
-                    b.ToTable("Categories");
-                });
-
             modelBuilder.Entity("RestaurantDataAccess.Models.CheckReservation", b =>
                 {
                     b.Property<int>("Id")
@@ -255,8 +244,6 @@ namespace RestaurantDataAccess.Migrations
                     b.Property<float>("Price");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
 
                     b.ToTable("Menu");
                 });
@@ -342,14 +329,6 @@ namespace RestaurantDataAccess.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RestaurantDataAccess.Models.Menu", b =>
-                {
-                    b.HasOne("RestaurantDataAccess.Models.Category")
-                        .WithMany("Items")
-                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

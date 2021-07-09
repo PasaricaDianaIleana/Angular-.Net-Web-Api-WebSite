@@ -18,6 +18,6 @@ namespace RestaurantDataAccess
         public DbSet<Menu> Menu { get; set; }
         public DbSet<User>AppUser { get; set; }
 
-
+        public DbSet<Category> Categories { get; set; }
     }
 }
