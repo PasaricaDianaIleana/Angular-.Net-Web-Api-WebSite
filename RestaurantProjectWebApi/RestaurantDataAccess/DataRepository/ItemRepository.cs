@@ -1,4 +1,5 @@
-﻿using RestaurantDataAccess.Models;
+﻿using RestaurantDataAccess;
+using RestaurantDataAccess.Models;
 using RestaurantProjectWebApi.Repository;
 using System;
 using System.Collections.Generic;
@@ -9,34 +10,51 @@ namespace RestaurantProjectWebApi.DataRepository
 {
     public class ItemRepository : IItemsRepository
     {
+        private readonly AppDbContext _context;
+
+        public ItemRepository(AppDbContext context)
+        {
+            _context = context;
+        }
         public Menu AddItem(Menu menu)
         {
-            throw new NotImplementedException();
+            _context.Menu.Add(menu);
+            _context.SaveChanges();
+            return menu;
         }
 
         public Menu Delete(int id)
         {
-            throw new NotImplementedException();
+            var item = _context.Menu.FirstOrDefault(i => i.Id==id);
+            if (item != null)
+            {
+                _context.Remove(item);
+                _context.SaveChanges();
+            }
+            return null;
         }
 
         public Menu EditItem(Menu menu)
         {
-            throw new NotImplementedException();
+            var item = GetItemById(menu.Id);
+            _context.Update(item);
+            _context.SaveChanges();
+            return item;
         }
 
         public Menu GetItemById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Menu.FirstOrDefault(m => m.Id == id);
         }
 
         public List<Menu> GetItems()
         {
-            throw new NotImplementedException();
+            return _context.Menu.ToList();
         }
 
         public List<Menu> GetItemsListById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Menu.Where(m => m.CategoryId == id).ToList();
         }
     }
 }
