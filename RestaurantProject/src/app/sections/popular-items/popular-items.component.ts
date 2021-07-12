@@ -16,15 +16,18 @@ export class PopularItemsComponent implements OnInit {
 
   ngOnInit() {
     this.GetCategories();
+    this.Buttons('1');
   }
   async Buttons(value: string) {
-    await this._dataService.GetMenuItemsById(this.itemsUrl + value).subscribe(
+    await this._dataService.GetMenuItemsById(this.itemsUrl + value).toPromise().then(
       data => {
+
         this.prod = this.SplitResult(data, 3);
-        //  console.log(data)
-        //  console.log(this.prod)
+
+        console.log(this.prod)
       });
   }
+
   redirectToFullMenu() {
     this.router.navigate(['/menu'])
   }
@@ -41,4 +44,5 @@ export class PopularItemsComponent implements OnInit {
     }
     return results;
   }
+
 }

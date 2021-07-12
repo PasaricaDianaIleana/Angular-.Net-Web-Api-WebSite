@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog,MatDialogConfig} from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date.component';
 @Component({
   selector: 'app-rezervare',
@@ -8,19 +8,19 @@ import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date
 })
 export class RezervareComponent implements OnInit {
 
-  constructor(private dialog:MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.OpenPopup();
+
   }
-OpenPopup(){
+  OpenPopup() {
 
-this.dialog.open(SelectDateComponent,{
-  height:'700px',
-  width:'700px'
-});
+    this.dialog.open(SelectDateComponent, {
+      height: '700px',
+      width: '700px'
+    });
 
-}
+  }
 }
 
 

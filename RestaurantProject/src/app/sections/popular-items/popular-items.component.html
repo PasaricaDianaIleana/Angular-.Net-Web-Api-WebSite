@@ -8,11 +8,12 @@
     Full Menu
   </button>
 
-  <div *ngFor="let value of response">
+  <div *ngFor="let value of response; let index = index">
     <button
       type="button"
       class="btn itemsBtn"
       (click)="Buttons(value.categoryId)"
+      [ngClass]="index == 0 ? 'active' : ''"
     >
       {{ value.name }}
     </button>
@@ -32,12 +33,18 @@
         >
           <ng-container *ngFor="let cards of item">
             <div class="col-md-4" style="float: left">
-              <div class="card" style="width: 340px; height: 460px">
-                <img [src]="cards.image" alt="img" class="card-img-top w-75" />
+              <div class="card">
+                <img
+                  [src]="cards.image"
+                  alt="img"
+                  class="card-img-top rounded-circle img"
+                />
                 <div class="card-body">
-                  <h4 class="card-title">title</h4>
-                  <p class="card-text">text</p>
-                  <button type="button" class="btn btn-warning">Btn</button>
+                  <h4 class="card-title text-center mt-2">
+                    {{ cards.name }}
+                  </h4>
+
+                  <button type="button" class="btn OrderBtn">Order Now</button>
                 </div>
               </div>
             </div>

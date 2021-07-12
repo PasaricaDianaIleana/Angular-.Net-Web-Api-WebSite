@@ -75,7 +75,11 @@ top: -7rem;
 margin-left: -5px;
 margin-top: 130px;
 }}
-
+.img{
+  width: 35vh;
+  align-items: center;
+  height: 30vh;
+}
 .carousel-control-prev,
 .carousel-control-next {
   background-color: #e1e1e1;
@@ -84,6 +88,14 @@ margin-top: 130px;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
+}
+.card-text{
+  color: #000;
+  margin-top: 20px;
+}
+.card-title{
+  font-weight: bold;
+  font-size: 1.3rem;
 }
 .card{
   width: 370px;
@@ -112,6 +124,33 @@ top:-44rem;
     font-size: 1.2rem;
 left: 5.2rem;
 padding: 1.5rem;
+}
+.OrderBtn{
+   background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+ position: absolute;
+left:35%;
+ color: #FE5F41;
+    outline:none;
+}
+.title{
+  text-align: center;
+  margin-top: -420px;
+  font-size: 2rem;
+  font-weight: bold;
+  color:#343a40;
+    margin-left: -5rem;
+}
+
+.tableImg{
+width: 100vh;
+height: 70vh;
+border-radius: 1rem;
+margin-top: -450px;
+margin-left: -130px;
 }
 @media screen and (max-width:600px){
   .itemsBtn{

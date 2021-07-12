@@ -83,8 +83,57 @@ font-size: 18px;
 .btnMenu:hover{
     background-color: rgb(190, 76, 56);
 }
+.galery{
+    margin-top: -28rem;
+}
+.galeryImg{
+    width: 100vh;
+    height: 35vh;
+}
+.galeryTitle{
+    
+     text-align: center;
+    color:rgb(61, 35, 16);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    top:-2rem;
+    margin-bottom: 6rem;
 
-
+}
+.footer-wrapper{
+      background: #FFF7F3;
+      width: 100%;
+      height: 50vh;
+    
+      position: relative;
+}
+.imgLogo{
+    padding-top: 5rem;
+}
+.text{
+    margin-left: -4rem;
+ font-size: 1rem;
+}
+.iconFa{
+color: #FE5F41;
+padding-left: 3rem;
+margin-left: -2rem;
+margin-top: 2rem;
+}
+.linksTitle{
+    margin-left:12rem;
+    margin-top: 5rem;
+}
+.componententLink{
+ display: block;
+  margin-left:12rem;
+  padding-top: 1rem;
+}
+.contactTitle{
+   margin-left:13rem;
+   margin-top: 4rem; 
+}
   #container{
     height:100%;
     width:100%;
