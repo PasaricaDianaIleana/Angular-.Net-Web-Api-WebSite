@@ -1,1 +1,36 @@
-<p>menu works!</p>
+<app-navbar></app-navbar>
+<div id="container">
+  <div class="containerImg"></div>
+
+  <h4 class="menuTitle textPosition">Discover</h4>
+  <h2 class="menuSubTitle textPosition">Our Menu</h2>
+  <div class="container">
+    <div class="row">
+      <ul class="menuCategories">
+        <li *ngFor="let category of response" class="li">
+          <button
+            type="button"
+            (click)="GetMenuItems(category.categoryId)"
+            class="btn btnItem"
+          >
+            {{ category.name }}
+          </button>
+        </li>
+      </ul>
+      <div class="menuWrapper">
+        <div class="col-md-12">
+          <div *ngFor="let menuItems of items">
+            <p class="item">
+              {{ menuItems.name }}
+              ............................................................................
+              <span style="color: #f36700">{{ menuItems.price }} $</span>
+            </p>
+            <p class="text-black-50 itemDescription">
+              {{ menuItems.description }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

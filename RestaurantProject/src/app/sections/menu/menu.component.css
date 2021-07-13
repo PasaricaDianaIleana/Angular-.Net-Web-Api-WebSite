@@ -1,0 +1,82 @@
+#container{
+    height:100vh;
+    width:100%;
+    position: relative;
+    font-size:0;
+
+}
+.containerImg{
+    height: 120vh;
+    width: 100%;
+    background-image: url(../../../assets/images/download.jpg) ;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.textPosition{
+position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: Arial, Helvetica, sans-serif;
+  left: 50%;
+}
+.menuTitle{
+      top: 10%;
+  font-size: 1.5rem;
+color:#f36700;
+font-weight: 400;
+
+}
+
+.btnItem{
+  color:black;
+  background-color: white;
+  border-radius: 0 !important;
+  width:13vh;
+  height:10vh
+  
+}
+.btnItem:focus{
+  background-color:#f36700 ;
+  color:white;
+  text-align: center;
+
+}
+.itemDescription{
+font-size: 1rem;
+ 
+ margin-left: 30px;
+}
+.menuWrapper{
+  background-color:rgb(255, 255, 255,9);;
+  margin-top: -766px;
+  width: 60%;
+  margin-left: 240px;
+  position: relative;
+  height: 100%;
+}
+.item{
+  font-size: 1.2rem;
+  display: inline-block;
+font-family:'Cabin', sans-serif;
+font-weight: 500;
+margin-left: 30px;
+text-align: center;
+margin-top: 10px;
+color: #151515;
+}
+.li{
+position: relative;
+top:-750px;
+display: inline;
+left: 300px;
+
+}
+
+.menuSubTitle
+{
+    font-family:Brush Script MT ;
+    top:15%;
+    font-size: 3rem;
+    color:white;
+    font-weight: 700;
+}
