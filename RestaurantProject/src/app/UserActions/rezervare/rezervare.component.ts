@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date.component';
+import { FormGroup, FormBuilder, Validators, RequiredValidator } from '@angular/forms';
 @Component({
   selector: 'app-rezervare',
   templateUrl: './rezervare.component.html',
@@ -8,10 +9,22 @@ import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date
 })
 export class RezervareComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
-
+  constructor(private dialog: MatDialog, private fb: FormBuilder) { }
+  reservationForm: FormGroup;
   ngOnInit() {
+    this.reservationForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', Validators.required],
+      date: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      guestsNr: ['', Validators.required],
+      time: ['', Validators.required]
 
+    })
+  }
+
+  onSubmit(): void {
+    console.log(this.reservationForm.value)
   }
   OpenPopup() {
 

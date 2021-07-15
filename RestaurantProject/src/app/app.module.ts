@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { SelectReservationComponent } from './UserActions/select-reservation/select-reservation.component';
 import { DataService } from './Service/data.service';
 import { PopularItemsComponent } from './sections/popular-items/popular-items.component';
+import { FooterComponent } from './sections/footer/footer.component';
 @NgModule({
 
   declarations: [
@@ -36,7 +37,8 @@ import { PopularItemsComponent } from './sections/popular-items/popular-items.co
     RegistrationComponent,
     SelectDateComponent,
     SelectReservationComponent,
-    PopularItemsComponent
+    PopularItemsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,222 @@
+<app-navbar></app-navbar>
+<div class="reservation">
+  <img
+    src="../../../assets/images/background03.jpg"
+    alt="img"
+    class="img-fluid bg-img"
+  />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form
+          class="reserveForm row"
+          (ngSubmit)="onSubmit()"
+          [formGroup]="reservationForm"
+        >
+          <div>
+            <h4 class="formTitle">Reservation</h4>
+            <h2 class="formSubTitle text-white">Book Your Table</h2>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('name').errors &&
+                    (reservationForm.get('name').touched ||
+                      reservationForm.get('name').dirty)
+                }"
+                for="name"
+                class="label"
+                >Name:</label
+              >
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                id="name"
+                placeholder="Name"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('name').errors &&
+                  (reservationForm.get('name').touched ||
+                    reservationForm.get('name').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('name').errors.required"
+                  >Name is required</span
+                >
+              </span>
+            </div>
+            <div class="form-group">
+              <label
+                for="phone"
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('phone').errors &&
+                    (reservationForm.get('phone').touched ||
+                      reservationForm.get('phone').dirty)
+                }"
+                class="label"
+                >Phone:</label
+              >
+              <input
+                type="text"
+                formControlName="phone"
+                class="form-control"
+                id="phone"
+                placeholder="Phone"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('phone').errors &&
+                  (reservationForm.get('phone').touched ||
+                    reservationForm.get('phone').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('phone').errors.required"
+                  >Phone number is required</span
+                >
+              </span>
+            </div>
+            <div class="form-group">
+              <label
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('date').errors &&
+                    (reservationForm.get('date').touched ||
+                      reservationForm.get('date').dirty)
+                }"
+                for="date"
+                class="label"
+                >Date:</label
+              >
+              <input
+                formControlName="date"
+                type="text"
+                class="form-control"
+                id="date"
+                placeholder="MM/DD/YYYY"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('date').errors &&
+                  (reservationForm.get('date').touched ||
+                    reservationForm.get('date').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('phone').errors.required">
+                  Date is required</span
+                >
+              </span>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label
+                for="Email"
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('email').errors &&
+                    (reservationForm.get('email').touched ||
+                      reservationForm.get('email').dirty)
+                }"
+                class="label"
+                >Email:</label
+              >
+              <input
+                type="email"
+                formControlName="email"
+                class="form-control"
+                id="Email"
+                placeholder="email"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('email').errors &&
+                  (reservationForm.get('email').touched ||
+                    reservationForm.get('email').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('email').errors.required">
+                  Email is required</span
+                >
+              </span>
+            </div>
+            <div class="form-group">
+              <label
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('guestsNr').errors &&
+                    (reservationForm.get('guestsNr').touched ||
+                      reservationForm.get('guestsNr').dirty)
+                }"
+                class="label"
+                for="guests"
+                class="label"
+                >Number of Guests</label
+              >
+              <input
+                type="number"
+                formControlName="guestsNr"
+                class="form-control"
+                id="guests"
+                placeholder="1"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('guestsNr').errors &&
+                  (reservationForm.get('guestsNr').touched ||
+                    reservationForm.get('guestsNr').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('guestsNr').errors.required">
+                  Guest number is required</span
+                >
+              </span>
+            </div>
+            <div class="form-group">
+              <label
+                [ngClass]="{
+                  'text-danger':
+                    reservationForm.get('time').errors &&
+                    (reservationForm.get('time').touched ||
+                      reservationForm.get('time').dirty)
+                }"
+                for="time"
+                class="label"
+                >Time:</label
+              >
+              <input
+                type="text"
+                formControlName="time"
+                class="form-control"
+                id="time"
+                placeholder="HH:MM"
+              />
+              <span
+                class="text-danger"
+                *ngIf="
+                  reservationForm.get('time').errors &&
+                  (reservationForm.get('time').touched ||
+                    reservationForm.get('time').dirty)
+                "
+              >
+                <span *ngIf="reservationForm.get('time').errors.required">
+                  Time is required</span
+                >
+              </span>
+            </div>
+            <button type="submit" class="btn reserveButton">BOOK NOW</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
