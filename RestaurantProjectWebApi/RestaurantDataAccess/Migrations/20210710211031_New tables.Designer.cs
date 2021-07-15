@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantDataAccess;
 
 namespace RestaurantDataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210710211031_New tables")]
+    partial class Newtables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,25 +191,6 @@ namespace RestaurantDataAccess.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RestaurantDataAccess.Models.Blog", b =>
-                {
-                    b.Property<int>("CommentId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Comment");
-
-                    b.Property<DateTime>("Date");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("CommentId");
-
-                    b.ToTable("Blog");
-                });
-
             modelBuilder.Entity("RestaurantDataAccess.Models.Category", b =>
                 {
                     b.Property<int>("CategoryId")
@@ -273,8 +256,6 @@ namespace RestaurantDataAccess.Migrations
 
                     b.Property<float>("Price");
 
-                    b.Property<int>("SoldNr");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
@@ -284,7 +265,7 @@ namespace RestaurantDataAccess.Migrations
 
             modelBuilder.Entity("RestaurantDataAccess.Models.Reservation", b =>
                 {
-                    b.Property<int>("ReservationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -292,19 +273,19 @@ namespace RestaurantDataAccess.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("FullName");
-
                     b.Property<int>("GuestsNr");
 
-                    b.Property<string>("Hour");
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Message");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("Type");
 
-                    b.HasKey("ReservationId");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Reservations");
                 });
@@ -315,21 +296,19 @@ namespace RestaurantDataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Content");
-
-                    b.Property<int?>("MenuId");
-
-                    b.Property<DateTime>("ReviewDate");
-
                     b.Property<int>("Stars");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Text");
+
+                    b.Property<int>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("ReviewId");
 
-                    b.HasIndex("MenuId");
+                    b.HasIndex("UserId1");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Review");
                 });
 
             modelBuilder.Entity("RestaurantDataAccess.Models.User", b =>
@@ -397,18 +376,11 @@ namespace RestaurantDataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("RestaurantDataAccess.Models.Reservation", b =>
-                {
-                    b.HasOne("RestaurantDataAccess.Models.User")
-                        .WithMany("reservations")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("RestaurantDataAccess.Models.Review", b =>
                 {
-                    b.HasOne("RestaurantDataAccess.Models.Menu", "Menu")
+                    b.HasOne("RestaurantDataAccess.Models.User")
                         .WithMany("Reviews")
-                        .HasForeignKey("MenuId");
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

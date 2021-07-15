@@ -10,7 +10,7 @@ namespace RestaurantProjectWebApi.Repository
     {
         List<Menu> GetItems();
         Menu AddItem(Menu menu);
-        Menu GetItemById(int id);
+        Menu GetById(int id);
         Menu Delete(int id);
         Menu EditItem(Menu menu);
         List<Menu> GetItemsListById(int id);

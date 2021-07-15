@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantDataAccess;
 
 namespace RestaurantDataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210711090534_New column")]
+    partial class Newcolumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -284,7 +286,7 @@ namespace RestaurantDataAccess.Migrations
 
             modelBuilder.Entity("RestaurantDataAccess.Models.Reservation", b =>
                 {
-                    b.Property<int>("ReservationId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -292,19 +294,19 @@ namespace RestaurantDataAccess.Migrations
 
                     b.Property<string>("Email");
 
-                    b.Property<string>("FullName");
-
                     b.Property<int>("GuestsNr");
 
-                    b.Property<string>("Hour");
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("Message");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("PhoneNumber");
 
-                    b.Property<string>("UserId");
+                    b.Property<string>("Type");
 
-                    b.HasKey("ReservationId");
-
-                    b.HasIndex("UserId");
+                    b.HasKey("Id");
 
                     b.ToTable("Reservations");
                 });
@@ -395,13 +397,6 @@ namespace RestaurantDataAccess.Migrations
                         .WithMany("Items")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RestaurantDataAccess.Models.Reservation", b =>
-                {
-                    b.HasOne("RestaurantDataAccess.Models.User")
-                        .WithMany("reservations")
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("RestaurantDataAccess.Models.Review", b =>

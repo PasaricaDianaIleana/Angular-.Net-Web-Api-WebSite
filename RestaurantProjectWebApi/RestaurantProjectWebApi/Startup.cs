@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using RestaurantDataAccess;
+using RestaurantDataAccess.DataRepository;
 using RestaurantDataAccess.Models;
+using RestaurantDataAccess.Repository;
 using RestaurantProjectWebApi.DataRepository;
 using RestaurantProjectWebApi.Repository;
 using System;
@@ -32,6 +34,7 @@ namespace RestaurantProjectWebApi
                 (options =>options.UseSqlServer(Configuration.GetConnectionString("RestaurantConnectionString")));
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IItemsRepository, ItemRepository>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDefaultIdentity<User>(options =>
             {

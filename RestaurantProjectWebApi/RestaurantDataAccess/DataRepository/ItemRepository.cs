@@ -36,13 +36,24 @@ namespace RestaurantProjectWebApi.DataRepository
 
         public Menu EditItem(Menu menu)
         {
-            var item = GetItemById(menu.Id);
-            _context.Update(item);
-            _context.SaveChanges();
-            return item;
+            var item = GetById(menu.Id);
+            if (item != null)
+            {
+                item.Id = menu.Id; 
+                item.Image = menu.Image;
+                item.Name = menu.Name;
+                item.Description = menu.Description;
+                item.Price = menu.Price;
+                item.SoldNr = menu.SoldNr;
+                item.CategoryId = menu.CategoryId;
+                _context.Update(item);
+                _context.SaveChanges();
+                return item;
+            }
+            return null;
         }
 
-        public Menu GetItemById(int id)
+        public Menu GetById(int id)
         {
             return _context.Menu.FirstOrDefault(m => m.Id == id);
         }
@@ -54,7 +65,7 @@ namespace RestaurantProjectWebApi.DataRepository
 
         public List<Menu> GetItemsListById(int id)
         {
-            return _context.Menu.Where(m => m.CategoryId == id).ToList();
+            return _context.Menu.OrderByDescending(m=>m.SoldNr).Where(m => m.CategoryId == id).Take(4).ToList();
         }
     }
 }

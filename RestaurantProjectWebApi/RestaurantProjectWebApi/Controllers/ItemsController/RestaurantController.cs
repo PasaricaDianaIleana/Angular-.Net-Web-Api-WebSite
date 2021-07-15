@@ -28,14 +28,29 @@ namespace RestaurantProjectWebApi.Controllers
             var item = _repository.GetItems()
                 .Select(i => new MenuItemsDto
                 {
-                    Id=i.Id,
-                    Image= String.Format("{0}/{1}", "https://localhost:44366/api/Restaurant/image", i.Id),
-                     Name =i.Name,
-                    Description=i.Description,
-                    Price=i.Price,
-                    CategoryId=i.CategoryId
+                    Id = i.Id,
+                    Image = String.Format("{0}/{1}", "https://localhost:44366/api/Restaurant/image", i.Id),
+                    Name = i.Name,
+                    Description = i.Description,
+                    Price = i.Price,
+                    CategoryId = i.CategoryId
                 });
             return item.ToList();
+        }
+        [HttpGet]
+        [Route("ByCategory/{id}")]
+        public List<MenuItemsDto> GetMenuItemsById(int id)
+        {
+            var menuItems = _repository.GetItemsListById(id).
+                Select(m => new MenuItemsDto { 
+                Id=m.Id,
+                Image= String.Format("{0}/{1}", "https://localhost:44366/api/Restaurant/image", m.Id),
+                Name=m.Name,
+                Description=m.Description,
+                Price=m.Price,
+                CategoryId=m.CategoryId
+                });
+            return menuItems.ToList();
         }
         [HttpPost]
         public IActionResult AddItem([FromBody] Menu menu)
@@ -59,6 +74,7 @@ namespace RestaurantProjectWebApi.Controllers
                 CategoryId = item.CategoryId
 
             };
+
             return CreatedAtAction("GetAll", new { Id = item.Id }, itemDto);
         }
         [HttpPost]
@@ -70,7 +86,7 @@ namespace RestaurantProjectWebApi.Controllers
             {
                 file.CopyTo(streamImage);
             }
-            var item = _repository.GetItemById(id);
+            var item = _repository.GetById(id);
             item.Image = file.FileName;
             _repository.EditItem(item);
             return Ok();
@@ -80,7 +96,7 @@ namespace RestaurantProjectWebApi.Controllers
         [Route("image/{id}")]
         public IActionResult GetImage([FromRoute] int id)
         {
-            var item = _repository.GetItemById(id);
+            var item = _repository.GetById(id);
             var image = item.Image;
             var imgPath = Path.Combine(_hostEnvironment.WebRootPath, "images",image);
             var imageFile = System.IO.File.OpenRead(imgPath);
@@ -92,7 +108,7 @@ namespace RestaurantProjectWebApi.Controllers
         {
             try
             {
-                var data = _repository.GetItemById(id);
+                var data = _repository.GetById(id);
                 if (data == null)
                 {
                     return NotFound();
@@ -105,5 +121,58 @@ namespace RestaurantProjectWebApi.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+        [HttpPut]
+        [Route("{id}")]
+        public ActionResult<Menu> UpdateItem(Menu menu, int id)
+        {
+            try
+            {
+                var menuItem = _repository.GetById(id);
+                if (menuItem == null)
+                {
+                    return NotFound();
+                }
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest();
+                }
+                _repository.EditItem(menu);
+                var itemDto = new MenuItemsDto
+                {
+                    Image = menu.Image,
+                    Name = menu.Name,
+                    Description = menu.Description,
+                    Price = menu.Price,
+                    CategoryId = menu.CategoryId
+                };
+                return Ok(itemDto);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetItemById(int id)
+        {
+            var item = _repository.GetById(id);
+            if (item != null)
+            {
+                var itemDto = new MenuItemsDto
+                {
+                    Image = item.Image,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Price = item.Price,
+                    CategoryId = item.CategoryId
+
+                };
+                return Ok(itemDto);
+            }
+            return null;
+        }
+        
+        
     }
 }
