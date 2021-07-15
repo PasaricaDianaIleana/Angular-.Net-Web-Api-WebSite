@@ -51,7 +51,6 @@ export class RegistrationComponent implements OnInit {
 
   CreateUser(formVal, url) {
 
-
     return this.dataService.userRegistration(this.url, formVal).toPromise()
       .then(res => {
         return res;
