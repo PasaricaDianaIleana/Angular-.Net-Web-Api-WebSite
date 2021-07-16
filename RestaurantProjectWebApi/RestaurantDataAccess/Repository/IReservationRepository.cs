@@ -13,5 +13,7 @@ namespace RestaurantDataAccess.Repository
         List<Reservation> GetReservationsByUserId(int id);
         List<Reservation> GetAllReservations();
         Reservation GetReservationById(int id);
+
+        bool CheckResevation(string Date,string Hour, int guestNr);
     }
 }

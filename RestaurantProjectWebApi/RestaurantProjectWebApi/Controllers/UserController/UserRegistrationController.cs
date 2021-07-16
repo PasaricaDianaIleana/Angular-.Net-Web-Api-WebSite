@@ -75,13 +75,27 @@ namespace RestaurantProjectWebApi.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(token);
                 var WriteToken = tokenHandler.WriteToken(securityToken);
-                return Ok(new { WriteToken });
+                return Ok(new { WriteToken,user.Id });
             }
             else
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
          
+        }
+        [HttpGet]
+        [Route("UserProfile")]
+        [Authorize]
+        public async Task<Object> GetUserProfile()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserId").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return new 
+            {
+              user.Id,
+                user.UserName
+            };
+           
         }
        
     }

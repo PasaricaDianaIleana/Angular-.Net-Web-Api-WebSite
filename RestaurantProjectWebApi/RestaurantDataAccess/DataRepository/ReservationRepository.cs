@@ -26,6 +26,15 @@ namespace RestaurantDataAccess.DataRepository
             return null;
         }
 
+        public bool CheckResevation(string Date, string Hour, int guestNr)
+        {
+            var getReservation = _context.Reservations.Where(x => x.Date == Date && x.Hour == Hour && x.GuestsNr == guestNr).FirstOrDefault();
+            { if(getReservation!=null)
+                return true;
+            }
+            return false;
+        }
+
         public void DeleteReservation(int id)
         {
             var data = GetReservationById(id);
