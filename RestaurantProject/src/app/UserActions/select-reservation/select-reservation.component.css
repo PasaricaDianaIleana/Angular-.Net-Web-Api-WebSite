@@ -1,0 +1,18 @@
+.header{
+    background-color: rgb(128, 81, 37);
+    width: 93vh;
+    margin-left: -1.5rem;
+    margin-top: -1.5rem;
+    height: 5vh;
+}
+.wrapper{
+    position: absolute;
+}
+.headerInfo{
+    color:white;;
+    top:-25px;
+    left: 0px;
+    font-size: 14px;
+    text-align: center;
+    padding: 4px;
+}

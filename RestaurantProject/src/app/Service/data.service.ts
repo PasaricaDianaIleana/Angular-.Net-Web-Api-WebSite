@@ -6,6 +6,7 @@ import { User } from '../Models/login'
 import { Category } from '../Models/Category';
 import { reservation } from '../Models/reservation'
 import { MenuItem } from '../Models/MenuItem';
+import { CheckReservation } from '../Models/checkReservation';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,6 +49,9 @@ export class DataService {
   }
   AddReservation(url: string, data: reservation): Observable<reservation> {
     return this.http.post<reservation>(url, data, { headers: this.headers })
+  }
+  CheckReservation(url: string): Observable<reservation> {
+    return this.http.get<reservation>(url, { headers: this.headers })
   }
 
 }

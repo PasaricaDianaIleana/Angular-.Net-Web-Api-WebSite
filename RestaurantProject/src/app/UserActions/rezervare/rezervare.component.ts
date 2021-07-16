@@ -6,7 +6,7 @@ import { DataService } from 'src/app/Service/data.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { ThrowStmt } from '@angular/compiler';
+
 @Component({
   selector: 'app-rezervare',
   templateUrl: './rezervare.component.html',
@@ -17,10 +17,12 @@ export class RezervareComponent implements OnInit {
   constructor(private dialog: MatDialog, private router: Router, private fb: FormBuilder, private dataService: DataService) { }
   reservationForm: FormGroup;
   recivedId: string;
+  receivedData: string
   destroy = new Subject();
   formData;
   url: string = "https://localhost:44366/api/Reservation"
   ngOnInit() {
+
     this.reservationForm = this.fb.group({
       name: ['', Validators.required],
       phone: ['', Validators.required],
@@ -72,6 +74,7 @@ export class RezervareComponent implements OnInit {
     )
     return this.recivedId;
   }
+
 }
 
 

@@ -1,49 +1,95 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<div style="width: 300px;">
-    <img  src="../../../assets/images/img.png"  style="margin-left:-24px;margin-top: -24px; height: 100%;width: 700px" />
-    
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div style="width: 300px">
+  <img
+    src="../../../assets/images/img.png"
+    style="margin-left: -24px; margin-top: -24px; height: 100%; width: 700px"
+  />
 </div>
 <div class="row">
-<form  [formGroup]=" selectDate" (ngSubmit)="onSubmit()" classs=" form-horizontal">
- 
-    <div class='form-group' style="margin-top: -16px;">
-      <div class='col-sm-4' >
-        <button  class="rightArrow bg-transparent border-0" (click)="incrementDay()"><i class="fa fa-angle-right fa-2x"  aria-hidden="true"></i></button>
-    </div>
-    <div class='col-sm-4' style="margin-top: -35px;">
-        <input type="date" id="date"  formControlName="selectDate"  class="inputDate form-control"  >  
-    </div>
-
-        <div class='col-sm-4' style="margin-top: -35px;" >
-          <button id="btnDecrementDay"  type="button" class="leftArrow bg-transparent border-0" (click)="decrementDay()"><i class="fa fa-angle-left fa-2x"  aria-hidden="true"></i></button>
+  <form
+    [formGroup]="selectDate"
+    (ngSubmit)="onSubmit()"
+    classs=" form-horizontal"
+  >
+    <div class="form-group" style="margin-top: -16px">
+      <div class="col-sm-4">
+        <button
+          class="rightArrow bg-transparent border-0"
+          (click)="incrementDay()"
+        >
+          <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+        </button>
       </div>
-        <label class="labelStyle" for="date">date</label>
-        
-    </div>
-    
-    <div class="form-group p-3">
-        <div class='col-sm-4'>
+      <div class="col-sm-4" style="margin-top: -35px">
+        <input
+          type="date"
+          id="date"
+          formControlName="selectDay"
+          class="inputDate form-control"
+        />
+      </div>
 
-            <button  class="bg-transparent border-0 leftArrowGuests" (click)="decrementGuests()"><i class="fa fa-angle-left fa-2x"  aria-hidden="true"></i></button>
-        </div>
-        <div class='col-sm-4'>
-        <input  id="nrGuests" formControlName="guestNr" min="2" class="form-control numberForm" type="number">
+      <div class="col-sm-4" style="margin-top: -35px">
+        <button
+          id="btnDecrementDay"
+          type="button"
+          class="leftArrow bg-transparent border-0"
+          (click)="decrementDay()"
+        >
+          <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <label class="labelStyle" for="date">date</label>
     </div>
-    <div class='col-sm-4'>
-        <button   type="button" class=" bg-transparent border-0 rightArrowGuests" (click)="incrementGuests()"><i class="fa fa-angle-right fa-2x"  aria-hidden="true"></i></button>
+
+    <div class="form-group p-3">
+      <div class="col-sm-4">
+        <button
+          class="bg-transparent border-0 leftArrowGuests"
+          (click)="decrementGuests()"
+        >
+          <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="col-sm-4">
+        <input
+          id="nrGuests"
+          formControlName="guestNr"
+          min="2"
+          class="form-control numberForm"
+          type="number"
+        />
+      </div>
+      <div class="col-sm-4">
+        <button
+          type="button"
+          class="bg-transparent border-0 rightArrowGuests"
+          (click)="incrementGuests()"
+        >
+          <i class="fa fa-angle-right fa-2x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <label for="nrGuests" class="guestsLabel">guests</label>
     </div>
-        <label for="nrGuests" class="guestsLabel">guests</label>
+
+    <div class="form-group">
+      <div class="col-sm-4">
+        <input
+          id="selectTime"
+          formControlName="selectHour"
+          class="form-control timeInput"
+          type="time"
+        />
+      </div>
+
+      <label for="selectTime" class="HourLabel">time</label>
     </div>
- 
-    <div class="form-group" >
-      
-        <div class="col-sm-4" >
-        <input id="selectTime" formControlName="selectHour"  class="form-control timeInput"  type="time">
-    </div>
-    
-        <label for="selectTime" class="HourLabel">time</label>
-    </div>
-    
-    <button  class="btn"  type="submit" (click)="checkReservation()">Search</button>
-</form>
+
+    <button class="btn" type="submit" (click)="checkReservation()">
+      Search
+    </button>
+  </form>
 </div>

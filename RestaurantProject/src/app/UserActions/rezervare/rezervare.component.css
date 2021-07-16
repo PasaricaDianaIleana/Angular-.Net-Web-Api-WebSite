@@ -7,10 +7,20 @@
 .reservation{
 position: relative;
     box-sizing: border-box;
+    margin-bottom:5rem;
+}
+.program{
+      background: rgb(14, 13, 3);
+        margin-top: 15rem;
+   margin-left: 4.7rem;
+   width: 50vh;
+   height: 58vh;
 }
 .reserveForm{
-   margin-top: 15rem;
-   margin-left: 5rem;
+   margin-top: 10rem;
+   margin-left: 7.5rem;
+width: 70vh;
+height: 75vh;
     background: rgba(21, 21, 21, 0.9);
 }
 .formTitle{
@@ -20,11 +30,30 @@ position: relative;
     padding-top: 2rem;
     font-size: 1rem;
 }
+
 .formSubTitle{
      font-family:Brush Script MT ;
-   
     margin-left: 9rem;
     font-size: 2.3rem;
+}
+.day{
+display: inline-block;
+color: white;
+
+padding-right: 7rem;
+}
+.hours{
+ margin-right: 0.7rem;
+   color: #f36700; 
+    float: right;
+}
+.SubTitle{
+    font-family:Brush Script MT ; 
+    margin-left: 7rem;
+    font-size: 2.3rem;
+    color: white;
+    bottom:-3rem;
+   margin-top: 4rem;
 }
 .reserveButton{
     display: inline-block;
@@ -37,6 +66,17 @@ position: relative;
     padding: 15px 30px;
     margin-top: 2rem;
 
+}
+.checKReservation{
+    display: inline-block;
+    background-color:#f36700 ;
+     border: none;
+    border-radius: 40px;
+    text-align: center;
+    color:white;
+    margin-left: 5rem;
+    padding: 10px 30px;
+    margin-top: -1.5rem;
 }
 .label{
     color:white;

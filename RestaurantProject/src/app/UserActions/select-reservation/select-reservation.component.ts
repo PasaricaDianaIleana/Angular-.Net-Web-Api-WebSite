@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {DataService} from '../../Service/data.service'
+import { DataService } from '../../Service/data.service'
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 @Component({
@@ -8,20 +8,21 @@ import { Subject } from 'rxjs';
   styleUrls: ['./select-reservation.component.css']
 })
 export class SelectReservationComponent implements OnInit {
-  receivedData:string
+  receivedData: any
   destroy = new Subject();
-  constructor(private data:DataService) { }
+  constructor(private data: DataService) { }
 
   ngOnInit(): void {
     this.getFormData()
   }
- async getFormData(){
- this.data.share.pipe(takeUntil(this.destroy)).subscribe(
- data=>(this.receivedData=data),
-  error=>console.error(error)
-  
-);
+  async getFormData() {
+    this.data.share.pipe(takeUntil(this.destroy)).subscribe(
+      data => (
+        console.log(data),
+        this.receivedData = data),
+      error => console.error(error)
 
-console.log(this.data)
-}
+    );
+
+  }
 }
