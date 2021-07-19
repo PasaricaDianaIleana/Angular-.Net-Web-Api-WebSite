@@ -1,12 +1,12 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms'
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog'
 import { SelectReservationComponent } from '../select-reservation/select-reservation.component'
 import { DataService } from '../../Service/data.service'
-import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { ThrowStmt } from '@angular/compiler';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-select-date',
@@ -17,6 +17,8 @@ export class SelectDateComponent implements OnInit {
   prevDate: boolean = false;
   selectDate: FormGroup;
   receivedData: string
+  date: string = '';
+  responseApi: any;
   destroy = new Subject();
   checkDate: boolean = true;
   constructor(private form: FormBuilder, private dialog: MatDialog, private data: DataService, private router: Router) { }
@@ -69,35 +71,33 @@ export class SelectDateComponent implements OnInit {
       guestNr: [this.currentNumber]
     });
   }
-  getResevation() {
 
-  }
   checkReservation() {
-    let url = this.url + '/' + this.selectDate.value.selectDay + '/' + this.selectDate.value.selectHour + '/' + this.selectDate.value.guestNr
+    let url = this.url + '/' + this.changeDateFormat() + '/' + this.selectDate.value.selectHour + '/' + this.selectDate.value.guestNr
     this.data.CheckReservation(url).subscribe(
       (res: any) => {
-        console.log(res)
+        // console.log(res)
+        let newDialog = this.dialog.open(SelectReservationComponent, {
+          height: '700px',
+          width: '700px',
+        })
 
-        this.dialog.closeAll();
 
       },
       err => {
         if (err.status == 404) {
-          const newDialog = this.dialog.open(SelectReservationComponent, {
-            height: '700px',
-            width: '700px',
-
-          })
-
+          alert("Don't exist")
+          this.dialog.closeAll();
         } else {
           console.log(err);
         }
-      }
-    )
+      })
+  }
 
-
-
-
+  changeDateFormat(): string {
+    const newDate = new DatePipe('en-US').transform(this.selectDate.get('selectDay').value, 'dd-MM-yyyy')
+    //console.log(newDate);
+    return newDate;
 
   }
 }

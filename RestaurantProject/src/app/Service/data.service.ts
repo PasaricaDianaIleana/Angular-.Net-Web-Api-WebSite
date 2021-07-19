@@ -53,5 +53,7 @@ export class DataService {
   CheckReservation(url: string): Observable<reservation> {
     return this.http.get<reservation>(url, { headers: this.headers })
   }
-
+  GetReservation(url: string): Observable<reservation> {
+    return this.http.get<reservation>(url, { headers: this.headers })
+  }
 }
