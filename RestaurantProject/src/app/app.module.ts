@@ -13,11 +13,8 @@ import { LoginComponent } from './UserActions/login/login.component';
 import { RegistrationComponent } from './UserActions/registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectDateComponent } from './UserActions/select-date/select-date.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms'
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { SelectReservationComponent } from './UserActions/select-reservation/select-reservation.component';
 import { DataService } from './Service/data.service';
 import { PopularItemsComponent } from './sections/popular-items/popular-items.component';
@@ -45,14 +42,14 @@ import { FooterComponent } from './sections/footer/footer.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     HttpClientModule
   ],
-  providers: [
+  providers: [{
+    provide: MatDialogRef,
+    useValue: {}
+  },
     DataService
   ],
   bootstrap: [AppComponent]

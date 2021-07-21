@@ -26,6 +26,26 @@
 .reservationBody{
     margin-top:8rem
 }
+.divStyle{
+   
+ width: 44%;
+display: inline-block;
+ text-align: center;
+margin-top: 3rem;
+          
+}
+.reservationButton{
+    color: rgb(255, 255, 255);
+    background-color: rgb(144, 119, 90);
+        border-width: 1px;
+    border-style: solid;
+    border-color: transparent;
+    cursor: pointer;
+  margin-left: -5rem;
+    font-size: 1rem;
+    width: 25vh;
+    height: 56px;
+}
 .dates{
     background-color: rgb(251, 241, 220);
     width: 100%;

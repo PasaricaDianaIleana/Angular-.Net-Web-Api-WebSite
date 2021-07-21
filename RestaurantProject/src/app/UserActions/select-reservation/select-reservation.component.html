@@ -1,31 +1,28 @@
-<div class="wrapper">
-  <div class="header">
-    <p class="headerInfo">
-      <span>{{ receivedData.selectDay | date: "dd/MM/yyyy" }} - </span>
-      <span>{{ receivedData.guestNr }} guests</span> -
-      <span>{{ receivedData.selectHour }}</span>
-    </p>
-    <p class="textInfo">
-      Unfortunately there is no availability at selected time.
-    </p>
-    <p class="dates">Other dates with availability</p>
-  </div>
-  <div class="reservationBody">
-    <table class="table-borderless">
-      <thead>
-        <tr>
-          {{
-            receivedData.selectDay | date: "dd/MM/yyyy"
-          }}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td *ngFor="let time of listOfData">
-            <button type="button" class="btn">{{ time }}</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container">
+  <div class="row">
+    <div class="wrapper">
+      <div class="header">
+        <p class="headerInfo">
+          <span>{{ receivedData.selectDay | date: "dd/MM/yyyy" }} - </span>
+          <span>{{ receivedData.guestNr }} guests</span> -
+          <span>{{ receivedData.selectHour }}</span>
+        </p>
+        <p class="textInfo">
+          Unfortunately there is no availability at selected time.
+        </p>
+        <p class="dates">Other dates with availability</p>
+      </div>
+      <div class="reservationBody">
+        <p>
+          {{ receivedData.selectDay | date: "dd/MM/yyyy" }}
+        </p>
+
+        <div *ngFor="let time of listOfData" class="divStyle">
+          <button type="button" class="btn reservationButton">
+            {{ time }}
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

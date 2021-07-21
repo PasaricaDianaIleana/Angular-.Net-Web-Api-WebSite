@@ -1,9 +1,7 @@
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms'
 import { DatePipe, formatDate } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog'
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog'
 import { SelectReservationComponent } from '../select-reservation/select-reservation.component'
 import { DataService } from '../../Service/data.service'
 import { Subject } from 'rxjs';
@@ -21,7 +19,7 @@ export class SelectDateComponent implements OnInit {
   responseApi: any;
   destroy = new Subject();
   checkDate: boolean = true;
-  constructor(private form: FormBuilder, private dialog: MatDialog, private data: DataService, private router: Router) { }
+  constructor(private form: FormBuilder, private dialog: MatDialog, private data: DataService, private router: Router, private dialogRef: MatDialogRef<SelectDateComponent>) { }
 
   currentDate = new Date(Date.now())
   currentNumber: number = 2;
@@ -77,17 +75,13 @@ export class SelectDateComponent implements OnInit {
     this.data.CheckReservation(url).subscribe(
       (res: any) => {
         // console.log(res)
-        let newDialog = this.dialog.open(SelectReservationComponent, {
-          height: '700px',
-          width: '700px',
-        })
-
-
+        this.openDialog();
       },
       err => {
         if (err.status == 404) {
           alert("Don't exist")
-          this.dialog.closeAll();
+          this.dialogRef.close(this.selectDate)
+
         } else {
           console.log(err);
         }
@@ -98,6 +92,13 @@ export class SelectDateComponent implements OnInit {
     const newDate = new DatePipe('en-US').transform(this.selectDate.get('selectDay').value, 'dd-MM-yyyy')
     //console.log(newDate);
     return newDate;
+
+  }
+  openDialog() {
+    const newDialog = this.dialog.open(SelectReservationComponent, {
+      height: '700px',
+      width: '700px',
+    })
 
   }
 }

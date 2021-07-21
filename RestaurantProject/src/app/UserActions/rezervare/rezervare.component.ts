@@ -20,6 +20,7 @@ export class RezervareComponent implements OnInit {
   receivedData: string
   destroy = new Subject();
   formData;
+  dialogValue
   url: string = "https://localhost:44366/api/Reservation"
   ngOnInit() {
 
@@ -47,8 +48,8 @@ export class RezervareComponent implements OnInit {
         userId: this.getUserId()
       }
       console.log(this.formData)
-      this.dataService.AddReservation(this.url, this.formData).toPromise()
-        .then((data) => {
+      this.dataService.AddReservation(this.url, this.formData).subscribe(
+        (data) => {
           return data;
         })
     }
@@ -58,15 +59,17 @@ export class RezervareComponent implements OnInit {
   }
   OpenPopup() {
 
-    this.dialog.open(SelectDateComponent, {
+    let data = this.dialog.open(SelectDateComponent, {
       height: '700px',
-      width: '700px'
-    });
+      width: '700px',
 
+    });
+    return data.afterClosed().subscribe((res) => {
+      console.log(res.value)
+      this.UpdateFormInputs(res)
+    })
   }
-  AddReservation(formData, url: string) {
-    return
-  }
+
   getUserId(): string {
     this.dataService.share.pipe(takeUntil(this.destroy)).subscribe(
       data => (this.recivedId = data),
@@ -74,7 +77,15 @@ export class RezervareComponent implements OnInit {
     )
     return this.recivedId;
   }
+  UpdateFormInputs(values) {
+    console.log(values)
 
+    this.reservationForm.patchValue({
+      date: [values.value.selecteDay],
+      guestsNr: [values.value.guestNr],
+      time: [values.value.selectHour]
+    })
+  }
 }
 
 
