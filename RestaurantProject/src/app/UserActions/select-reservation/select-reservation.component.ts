@@ -1,20 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { DataService } from "../../Service/data.service";
-import { min, takeUntil } from "rxjs/operators";
-import { Subject } from "rxjs";
+import { takeUntil } from "rxjs/operators";
+import { Subject, Subscription } from "rxjs";
 import { DatePipe } from "@angular/common";
-
+import { MatDialogRef } from '@angular/material/dialog'
 @Component({
   selector: "app-select-reservation",
   templateUrl: "./select-reservation.component.html",
   styleUrls: ["./select-reservation.component.css"],
 })
-export class SelectReservationComponent implements OnInit {
-  receivedData: any;
-  destroy = new Subject();
-  dateFormat: Date;
-  listOfData = [];
-  constructor(private data: DataService) { }
+export class SelectReservationComponent implements OnInit, OnDestroy {
+  public receivedData: any;
+  private destroy = new Subject();
+  public dateFormat: Date;
+  public listOfData = [];
+  private checkSubs: Subscription
+  constructor(private data: DataService, private dialogRef: MatDialogRef<SelectReservationComponent>) { }
 
   ngOnInit(): void {
     this.getFormData();
@@ -60,5 +61,15 @@ export class SelectReservationComponent implements OnInit {
       ":" +
       this.CheckTime(mins % 60)
     );
+  }
+  SelectHour(time: string) {
+    alert(time);
+    this.dialogRef.close(time)
+
+  }
+  ngOnDestroy() {
+    if (this.checkSubs) {
+      this.checkSubs.unsubscribe();
+    }
   }
 }

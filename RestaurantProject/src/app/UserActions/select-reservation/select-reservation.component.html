@@ -18,7 +18,11 @@
         </p>
 
         <div *ngFor="let time of listOfData" class="divStyle">
-          <button type="button" class="btn reservationButton">
+          <button
+            type="button"
+            (click)="SelectHour(time)"
+            class="btn reservationButton"
+          >
             {{ time }}
           </button>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date.component';
 import { FormGroup, FormBuilder, Validators, RequiredValidator } from '@angular/forms';
@@ -6,21 +6,23 @@ import { DataService } from 'src/app/Service/data.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-rezervare',
   templateUrl: './rezervare.component.html',
   styleUrls: ['./rezervare.component.css']
 })
-export class RezervareComponent implements OnInit {
+export class RezervareComponent implements OnInit, OnDestroy {
 
   constructor(private dialog: MatDialog, private router: Router, private fb: FormBuilder, private dataService: DataService) { }
-  reservationForm: FormGroup;
-  recivedId: string;
-  receivedData: string
-  destroy = new Subject();
-  formData;
-  dialogValue
+  public reservationForm: FormGroup;
+  public recivedId: string;
+  public receivedData: string
+  private destroy = new Subject();
+  public formData;
+  private formSub: Subscription;
+  private dialogSub: Subscription;
   url: string = "https://localhost:44366/api/Reservation"
   ngOnInit() {
 
@@ -85,6 +87,14 @@ export class RezervareComponent implements OnInit {
       guestsNr: [values.value.guestNr],
       time: [values.value.selectHour]
     })
+  }
+  ngOnDestroy() {
+    if (this.dialogSub) {
+      this.dialogSub.unsubscribe();
+    }
+    if (this.formSub) {
+      this.formSub.unsubscribe();
+    }
   }
 }
 
