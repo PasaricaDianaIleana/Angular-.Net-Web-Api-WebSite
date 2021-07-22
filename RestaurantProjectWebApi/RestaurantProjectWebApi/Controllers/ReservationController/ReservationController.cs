@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using RestaurantDataAccess.Models;
 using RestaurantDataAccess.Repository;
 using RestaurantProjectWebApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace RestaurantProjectWebApi.Controllers
@@ -90,19 +92,35 @@ namespace RestaurantProjectWebApi.Controllers
         }
         [HttpGet]
         [Route("{time}/{hour}/{guests}")]
-        public ActionResult<CheckReservationDto> CheckReservation( string time,string hour,int guests)
+        public ActionResult CheckReservation( string time,string hour,int guests)
         {
             var reservation = _repo.CheckResevation(time, hour, guests);
             if (reservation)
             {
-                return Ok("true");
+                return Ok();
             }
             else
             {
-                return NotFound("false");
+                return NotFound();
+               
             }
-            
-
+        }
+        [HttpGet]
+        [Route("{date}")]
+        public ActionResult<List<CheckReservationDto>> GetReservationByDay(string date)
+        {
+            var reservation = _repo.GetReservation(date).Select(r => new CheckReservationDto
+            {
+                Date = r.Date,
+                GuestsNr = r.GuestsNr,
+                Time = r.Hour
+            }); 
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            return reservation.ToList();
+    
         }
     }
 }

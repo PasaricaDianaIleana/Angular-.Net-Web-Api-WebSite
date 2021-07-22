@@ -55,6 +55,11 @@ namespace RestaurantDataAccess.DataRepository
             return _context.Reservations.ToList();
         }
 
+        public List<Reservation> GetReservation(string Date)
+        {
+            return _context.Reservations.Where(x => x.Date == Date).ToList();
+        }
+
         public Reservation GetReservationById(int id)
         {
             return _context.Reservations.FirstOrDefault(x => x.ReservationId == id);

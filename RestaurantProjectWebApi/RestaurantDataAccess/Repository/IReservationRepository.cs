@@ -15,5 +15,6 @@ namespace RestaurantDataAccess.Repository
         Reservation GetReservationById(int id);
 
         bool CheckResevation(string Date,string Hour, int guestNr);
+        List<Reservation> GetReservation(string Date);
     }
 }
