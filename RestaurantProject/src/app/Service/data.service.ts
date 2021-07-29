@@ -7,6 +7,7 @@ import { Category } from '../Models/Category';
 import { reservation } from '../Models/reservation'
 import { MenuItem } from '../Models/MenuItem';
 import { CheckReservation } from '../Models/checkReservation';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -35,8 +36,17 @@ export class DataService {
   userLogin(url: string, data: User): Observable<User> {
     this.loggedIn = true;
     return this.http.post<User>(url, data, { headers: this.headers });
-
-
+  }
+  isAuthenticated() {
+    if (localStorage.getItem("Token")) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  logout() {
+    localStorage.removeItem("Token");
   }
   GetCategories(url: string): Observable<Category> {
     return this.http.get<Category>(url, { headers: this.headers });

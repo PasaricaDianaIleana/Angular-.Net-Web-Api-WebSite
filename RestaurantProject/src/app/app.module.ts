@@ -19,6 +19,7 @@ import { SelectReservationComponent } from './UserActions/select-reservation/sel
 import { DataService } from './Service/data.service';
 import { PopularItemsComponent } from './sections/popular-items/popular-items.component';
 import { FooterComponent } from './sections/footer/footer.component';
+import { UserProfileComponent } from './sections/user-profile/user-profile.component';
 @NgModule({
 
   declarations: [
@@ -35,7 +36,8 @@ import { FooterComponent } from './sections/footer/footer.component';
     SelectDateComponent,
     SelectReservationComponent,
     PopularItemsComponent,
-    FooterComponent
+    FooterComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

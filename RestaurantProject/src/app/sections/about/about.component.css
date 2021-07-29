@@ -1,0 +1,13 @@
+.container{
+    min-width: 100%;
+  margin:0 auto
+}
+.bg-img
+{
+  background-repeat: no-repeat;
+height: 85vh;
+  width: 100%;
+}
+.imgWrapper{
+     margin-top: -1.5rem;
+}
