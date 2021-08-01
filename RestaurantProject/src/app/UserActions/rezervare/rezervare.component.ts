@@ -39,7 +39,7 @@ export class RezervareComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
 
-    if (this.dataService.loggedIn == true) {
+    if (this.dataService.isAuthenticated()) {
       this.formData = {
         fullName: this.reservationForm.value.name,
         phoneNumber: this.reservationForm.value.phone,

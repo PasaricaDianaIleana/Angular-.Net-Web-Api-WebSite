@@ -24,7 +24,7 @@ export class PopularItemsComponent implements OnInit {
 
         this.prod = this.SplitResult(data, 3);
 
-        console.log(this.prod)
+        //console.log(this.prod)
       });
   }
 

@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from '../../Service/data.service'
 import { } from '../../Models/login'
 import { Router } from '@angular/router';
-import { ThrowStmt } from '@angular/compiler';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -33,8 +32,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
 
         localStorage.setItem('Token', res.writeToken);
-        var data = localStorage.getItem('Token')
-        console.log(data)
+        console.log(res)
         this.dataService.sendData(res.id);
         this.router.navigateByUrl('/home')
       },

@@ -6,7 +6,7 @@ import { User } from '../Models/login'
 import { Category } from '../Models/Category';
 import { reservation } from '../Models/reservation'
 import { MenuItem } from '../Models/MenuItem';
-import { CheckReservation } from '../Models/checkReservation';
+import { IUserProfile } from '../Models/UserProfile'
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ import { CheckReservation } from '../Models/checkReservation';
 export class DataService {
 
   private headers: HttpHeaders;
-  public loggedIn = false;
+
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({
@@ -34,7 +34,6 @@ export class DataService {
     return this.http.post(url, data, { headers: this.headers });
   }
   userLogin(url: string, data: User): Observable<User> {
-    this.loggedIn = true;
     return this.http.post<User>(url, data, { headers: this.headers });
   }
   isAuthenticated() {
@@ -48,6 +47,10 @@ export class DataService {
   logout() {
     localStorage.removeItem("Token");
   }
+  getUserProfile(url: string): Observable<IUserProfile> {
+    var tokenHeader = new HttpHeaders({ 'Authorization': 'Bearer ' + localStorage.getItem("Token") })
+    return this.http.get<IUserProfile>(url, { headers: tokenHeader });
+  }
   GetCategories(url: string): Observable<Category> {
     return this.http.get<Category>(url, { headers: this.headers });
   }
@@ -56,6 +59,9 @@ export class DataService {
   }
   GetMenuItemsById(url: string): Observable<MenuItem> {
     return this.http.get<MenuItem>(url, { headers: this.headers });
+  }
+  GetUserReservation(url: string): Observable<reservation> {
+    return this.http.get<reservation>(url, { headers: this.headers })
   }
   AddReservation(url: string, data: reservation): Observable<reservation> {
     return this.http.post<reservation>(url, data, { headers: this.headers })

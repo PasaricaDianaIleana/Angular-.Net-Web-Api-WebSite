@@ -1,3 +1,71 @@
-<p>user-profile works!</p>
-
+<app-navbar></app-navbar>
 <button type="button" class="btn btn-danger" (click)="LogOut()">Log Out</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card accountCard">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item title">Personal Information</li>
+            <li class="list-group-item">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td>UserName: {{ userDetails?.userName }}</td>
+                  </tr>
+                  <tr>
+                    <td>Email: {{ userDetails?.email }}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone:{{ userDetails?.phone }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </li>
+            <li class="list-group-item">
+              <button class="btn" class="btn btn-danger" type="button">
+                Update account
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card reservationCard">
+        <div class="body">
+          <h5 class="title">Reservations</h5>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Email</th>
+                <th>Guests Number</th>
+                <th>Hour</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+                <th>Mark complete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let reservation of reservationList">
+                <td>{{ reservation.date }}</td>
+                <td>{{ reservation.email }}</td>
+                <td>{{ reservation.guestsNr }}</td>
+                <td>{{ reservation.hour }}</td>
+                <td>{{ reservation.phoneNumber }}</td>
+                <td>
+                  <button type="button" class="btn btn-danger">Delete</button>
+                  <button type="button" class="btn btn-danger">Update</button>
+                </td>
+                <td>
+                  <input type="checkbox" class="checkbox-light" /> mark complete
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
   }
   CheckToken() {
     this.token = this._dataServie.isAuthenticated();
-    console.log(this.token)
+    //console.log(this.token)
   }
   cardsItems = [
     { image: '../../../assets/images/—Pngtree—breakfast porridge oat milk_5400226.png', title: 'Breakfast', description: ' Breakfast is a light morning meal typically consisting of pastries and baked goods, fruits, toast, and coffee. ' },

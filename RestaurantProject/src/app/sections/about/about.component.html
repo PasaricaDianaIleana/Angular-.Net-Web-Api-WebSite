@@ -1,10 +1,88 @@
 <app-navbar></app-navbar>
-<div class="container">
-  <div class="imgWrapper">
-    <img
-      src="../../../assets/images/background02.jpg"
-      alt="bgImg"
-      class="img-fluid bg-img"
-    />
+<div class="container" id="container">
+  <div class="bgImg">
+    <div class="imgWrapper">
+      <h1 class="mainTitle">Welcome to our restaurant</h1>
+      <h4 class="text text-white">
+        We’re here to serve you the best food around, whenever you’re looking
+        for a great restaurant in Binghamton, NY.
+      </h4>
+      <button type="button" class="btn btnMenu" routerLink="/menu">
+        Discover our menu
+      </button>
+    </div>
   </div>
 </div>
+<div class="container">
+  <h2 class="sectionTitle">About Us</h2>
+  <div class="row">
+    <div class="col-md-5 row1">
+      Welcome to our Restaurant. Since 1988, Offering Traditional Dishes of the
+      highest quality.
+    </div>
+    <div class="col-md-7 row2">
+      Since 1973, The Spot Restaurant has been the go-to diner for residents of
+      Binghamton, NY. Our diner serves breakfast all day, in addition to
+      wholesome and flavorful dining options for lunch and dinner. From burgers
+      to salads, seafood to pastas, you’ll find all kinds of hearty meals
+      prepared fresh at The Spot Restaurant. Our diner also has a full bakery
+      with delicious baked goods and other treats, including our famous
+      cheesecake. Sounds delicious, right?
+    </div>
+  </div>
+  <h2 class="sectionTitle2">Galery</h2>
+  <div class="row" style="margin-top: 3rem">
+    <div class="col-md-3">
+      <img
+        class="img-fluid"
+        style="width: 620px; height: 30vh; margin-left: 2rem"
+        src="../../../assets/images/galery1.jpg"
+        alt="img"
+      />
+    </div>
+    <div class="col-md-3">
+      <img
+        style="margin-left: 1.2rem; height: 30vh; width: 800px"
+        class="img-fluid"
+        src="../../../assets/images/galery2.jpg"
+        alt="img"
+      />
+    </div>
+    <div class="col-md-6">
+      <img
+        style="height: 30vh; width: 780px"
+        class="img-fluid"
+        src="../../../assets/images/galery3.jpg"
+        alt="img"
+      />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 mt-2">
+      <img
+        class="img-fluid"
+        style="width: 620px; height: 30vh; margin-left: 2rem"
+        src="../../../assets/images/galery4.jpg"
+        alt="img"
+      />
+    </div>
+    <div class="col-md-3 mt-2">
+      <img
+        style="margin-left: 1.2rem; height: 30vh; width: 800px"
+        class="img-fluid"
+        src="../../../assets/images/galery5.jpg"
+        alt="img"
+      />
+    </div>
+    <div class="col-md-6 mt-2">
+      <img
+        style="height: 30vh; width: 780px"
+        class="img-fluid"
+        src="../../../assets/images/galery6.jpg"
+        alt="img"
+      />
+    </div>
+  </div>
+</div>
+<br />
+<app-footer></app-footer>
