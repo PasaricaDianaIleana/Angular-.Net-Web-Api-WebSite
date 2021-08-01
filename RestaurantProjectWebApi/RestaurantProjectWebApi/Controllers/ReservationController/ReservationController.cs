@@ -22,9 +22,9 @@ namespace RestaurantProjectWebApi.Controllers
             _repo = repo;
         }
         [HttpGet]
-        public List<ReservationDto> GetAll()
+        public async Task<List<ReservationDto>> GetAll()
         {
-            var reservation = _repo.GetAllReservations()
+            var reservation = (await _repo.GetAllReservations())
                  .Select(r => new ReservationDto
                  {
                      ReservationId = r.ReservationId,
@@ -35,11 +35,11 @@ namespace RestaurantProjectWebApi.Controllers
                      Email = r.Email,
                      FullName = r.FullName,
                      UserId = r.UserId
-                 }) ;
+                 });
             return reservation.ToList();
         }
         [HttpPost]
-        public IActionResult AddReservation([FromBody] Reservation reservation)
+        public async Task<ActionResult> AddReservation([FromBody] Reservation reservation)
         {
             if (reservation == null)
             {
@@ -49,7 +49,7 @@ namespace RestaurantProjectWebApi.Controllers
             {
                 return BadRequest();
             }
-            var data = _repo.AddReservation(reservation);
+            var data =await  _repo.AddReservation(reservation);
             var reservationDto = new ReservationDto
             {
                 ReservationId = data.ReservationId,
@@ -65,10 +65,31 @@ namespace RestaurantProjectWebApi.Controllers
 
         }
         [HttpGet]
-        [Route("{id}")]
-        public IActionResult GetReservationById(int id)
+        [Route("User/{id}")]
+        public async Task<IList<ReservationDto>> GetReservationById(string id)
         {
-            var obj = _repo.GetReservationById(id);
+            if(id is null)
+            {
+               
+            }
+            var reservation = (await _repo.GetReservationsByUserId(id))
+            .Select(data => new ReservationDto
+            {
+                FullName=data.FullName,
+                Email=data.Email,
+                Date=data.Date,
+                GuestsNr=data.GuestsNr,
+                Hour=data.Hour,
+                PhoneNumber=data.PhoneNumber
+                
+            }).ToList();
+            return reservation;
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetReservationById(int id)
+        {
+            var obj = await _repo.GetReservationById(id);
             if (obj == null)
             {
                 return NotFound();
@@ -92,9 +113,9 @@ namespace RestaurantProjectWebApi.Controllers
         }
         [HttpGet]
         [Route("{time}/{hour}/{guests}")]
-        public ActionResult CheckReservation( string time,string hour,int guests)
+        public async Task<ActionResult> CheckReservation( string time,string hour,int guests)
         {
-            var reservation = _repo.CheckResevation(time, hour, guests);
+            var reservation =await  _repo.CheckResevation(time, hour, guests);
             if (reservation)
             {
                 return Ok();
@@ -107,9 +128,10 @@ namespace RestaurantProjectWebApi.Controllers
         }
         [HttpGet]
         [Route("{date}")]
-        public ActionResult<List<CheckReservationDto>> GetReservationByDay(string date)
+        public async Task<ActionResult<List<CheckReservationDto>>> GetReservationByDay(string date)
         {
-            var reservation = _repo.GetReservation(date).Select(r => new CheckReservationDto
+            var reservation = (await _repo.GetReservation(date))
+                .Select(r => new CheckReservationDto
             {
                 Date = r.Date,
                 GuestsNr = r.GuestsNr,

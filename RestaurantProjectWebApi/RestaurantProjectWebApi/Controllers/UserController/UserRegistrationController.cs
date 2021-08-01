@@ -88,12 +88,15 @@ namespace RestaurantProjectWebApi.Controllers
         [Authorize]
         public async Task<Object> GetUserProfile()
         {
-            string userId = User.Claims.First(c => c.Type == "UserId").Value;
+            string userId = User.Claims.First(c => c.Type =="UserId").Value;
             var user = await _userManager.FindByIdAsync(userId);
-            return new 
+            return new UserProfileDTO
             {
-              user.Id,
-                user.UserName
+             UserId= user.Id,
+             UserName= user.UserName,
+              Email= user.Email,
+               Phone=user.PhoneNumber,
+               
             };
            
         }

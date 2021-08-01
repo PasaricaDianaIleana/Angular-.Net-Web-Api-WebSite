@@ -2,19 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RestaurantDataAccess.Repository
 {
     public interface IReservationRepository
     {
-        Reservation AddReservation(Reservation reservation);
-    void DeleteReservation(int id);
-        Reservation EditReservation(Reservation reservation);
-        List<Reservation> GetReservationsByUserId(int id);
-        List<Reservation> GetAllReservations();
-        Reservation GetReservationById(int id);
+       Task<Reservation> AddReservation(Reservation reservation);
+    Task DeleteReservation(int id);
+        Task<Reservation> EditReservation(Reservation reservation);
+       Task<IList<Reservation>> GetReservationsByUserId(string id);
+        Task<IList<Reservation>> GetAllReservations();
+        Task<Reservation> GetReservationById(int id);
 
-        bool CheckResevation(string Date,string Hour, int guestNr);
-        List<Reservation> GetReservation(string Date);
+        Task<bool> CheckResevation(string Date,string Hour, int guestNr);
+        Task<IList<Reservation>> GetReservation(string Date);
     }
 }
