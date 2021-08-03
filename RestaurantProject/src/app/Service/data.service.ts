@@ -63,6 +63,9 @@ export class DataService {
   GetUserReservation(url: string): Observable<reservation> {
     return this.http.get<reservation>(url, { headers: this.headers })
   }
+  DeleteReservation(url: string): Observable<void> {
+    return this.http.delete<void>(url, { headers: this.headers })
+  }
   AddReservation(url: string, data: reservation): Observable<reservation> {
     return this.http.post<reservation>(url, data, { headers: this.headers })
   }
@@ -70,6 +73,9 @@ export class DataService {
     return this.http.get<reservation>(url, { headers: this.headers })
   }
   GetReservation(url: string): Observable<reservation> {
+    return this.http.get<reservation>(url, { headers: this.headers })
+  }
+  GetReservationById(url: string): Observable<reservation> {
     return this.http.get<reservation>(url, { headers: this.headers })
   }
 }

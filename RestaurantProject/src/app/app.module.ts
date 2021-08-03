@@ -20,6 +20,7 @@ import { DataService } from './Service/data.service';
 import { PopularItemsComponent } from './sections/popular-items/popular-items.component';
 import { FooterComponent } from './sections/footer/footer.component';
 import { UserProfileComponent } from './sections/user-profile/user-profile.component';
+import { UpdateReservationComponent } from './UserActions/update-reservation/update-reservation.component';
 @NgModule({
 
   declarations: [
@@ -37,7 +38,8 @@ import { UserProfileComponent } from './sections/user-profile/user-profile.compo
     SelectReservationComponent,
     PopularItemsComponent,
     FooterComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UpdateReservationComponent
   ],
   imports: [
     BrowserModule,

@@ -55,8 +55,20 @@
                 <td>{{ reservation.hour }}</td>
                 <td>{{ reservation.phoneNumber }}</td>
                 <td>
-                  <button type="button" class="btn btn-danger">Delete</button>
-                  <button type="button" class="btn btn-danger">Update</button>
+                  <button
+                    type="button"
+                    (click)="DeleteReservation(reservation.reservationId)"
+                    class="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    type="button"
+                    (click)="UpdateReservation(reservation.reservationId)"
+                    class="btn btn-danger mt-3"
+                  >
+                    Update
+                  </button>
                 </td>
                 <td>
                   <input type="checkbox" class="checkbox-light" /> mark complete

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectDateComponent } from 'src/app/UserActions/select-date/select-date.component';
-import { FormGroup, FormBuilder, Validators, RequiredValidator } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/Service/data.service';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
