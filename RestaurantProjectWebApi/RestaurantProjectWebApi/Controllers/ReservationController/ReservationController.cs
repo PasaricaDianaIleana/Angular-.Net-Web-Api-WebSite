@@ -5,6 +5,7 @@ using RestaurantDataAccess.Repository;
 using RestaurantProjectWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -68,13 +69,11 @@ namespace RestaurantProjectWebApi.Controllers
         [Route("User/{id}")]
         public async Task<IList<ReservationDto>> GetReservationById(string id)
         {
-            if(id is null)
-            {
-               
-            }
+            
             var reservation = (await _repo.GetReservationsByUserId(id))
             .Select(data => new ReservationDto
             {
+                ReservationId=data.ReservationId,
                 FullName=data.FullName,
                 Email=data.Email,
                 Date=data.Date,
@@ -86,14 +85,11 @@ namespace RestaurantProjectWebApi.Controllers
             return reservation;
         }
         [HttpGet]
-        [Route("{id}")]
-        public async Task<ActionResult> GetReservationById(int id)
+        [Route("data/{id}")]
+        public async Task<ActionResult<ReservationDto>> GetReservationById(int id)
         {
+            Debugger.Break();
             var obj = await _repo.GetReservationById(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
             if (obj != null)
             {
                 var reservationDto = new ReservationDto
@@ -143,6 +139,31 @@ namespace RestaurantProjectWebApi.Controllers
             }
             return reservation.ToList();
     
+        }
+        [HttpDelete]
+        [Route("{id:int}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            var category = await _repo.GetReservationById(id);
+            if(category is null)
+            {
+                return NotFound();
+            }
+            await _repo.DeleteReservation(id);
+            return NoContent();
+        }
+        [HttpPut]
+        [Route("{id:int}")]
+        public async Task<ActionResult<Reservation>> UpdateReservationAsync(int id,Reservation reservation)
+        {
+            if (id != reservation.ReservationId)
+                return BadRequest();
+            var dataToUpdate =await _repo.GetReservationById(id);
+            if(dataToUpdate is null)
+            {
+                return NotFound();
+            }
+            return await _repo.EditReservation(dataToUpdate);
         }
     }
 }

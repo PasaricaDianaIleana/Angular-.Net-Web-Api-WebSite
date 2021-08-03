@@ -47,7 +47,20 @@ namespace RestaurantDataAccess.DataRepository
         }
         public async Task<Reservation> EditReservation(Reservation reservation)
         {
-            throw new NotImplementedException();
+            var result = await _context.Reservations.FirstOrDefaultAsync(r => r.ReservationId == reservation.ReservationId);
+            if (result != null)
+            {
+                result.Date = reservation.Date;
+                result.Email = reservation.Email;
+                result.FullName = reservation.FullName;
+                result.GuestsNr = reservation.GuestsNr;
+                result.Hour = reservation.Hour;
+                result.PhoneNumber = reservation.PhoneNumber;
+
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
 
         public async Task<IList<Reservation>> GetAllReservations()
